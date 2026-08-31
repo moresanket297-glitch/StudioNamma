@@ -64,6 +64,14 @@
     box-sizing: border-box;
 }
 
+html {
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
 .dark {
     background-color: black;
     color: white;
@@ -82,6 +90,28 @@ body {
     scrollbar-width: none;
 }
 
+.cursor-dot {
+    position: fixed;
+
+    width: 15px;
+    height: 15px;
+
+    background: blue;
+    border-radius: 50%;
+
+    pointer-events: none;
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.4s ease;
+}
+
+.cursor-dot.show {
+    opacity: 1;
+    visibility: visible;
+}
 
 /* NAVIGATION */
 .nav {
@@ -105,15 +135,69 @@ body {
     margin: 0;
 }
 
+.whatsapp {
+    position: fixed;
+
+    bottom: -90px;
+    right: -110px;
+
+    width: 330px;
+    height: 330px;
+
+    z-index: 9999;
+}
+
+.whatsapp img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.bottom-nav {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    z-index: 99999;
+}
+
+.bottom-nav p {
+    margin: 0;
+
+    font-family: "GT Font";
+
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
 
 /* MAIN HEADING */
 h1 {
     font-family: "Mixtape Extra Condensed";
     font-weight: 800;
 }
+
 p {
     font-family: "GT Font";
 }
+
 .head {
     display: flex;
     align-items: center;
@@ -518,6 +602,8 @@ p {
     width: 100%;
     min-height: 100vh;
 }
+
+
 .one-by-one {
     position: relative;
     z-index: 5;
@@ -530,27 +616,38 @@ p {
 
     margin-top: -50px;
 }
+
+
 .one-by-one h1 {
     color: #111;
     margin: 0;
+
     cursor: pointer;
 
     transition: color 0.3s ease;
 }
-.one-by-one:has(h1:hover) h1 {
-    /* color: #c5c5c5; */
+
+
+.one-by-one h1 {
+    color: #111;
+    transition: color 0.3s ease;
+}
+
+/* Jab kisi ek par hover/active ho */
+.one-by-one h1.active {
     color: #111;
 }
-.one-by-one h1:hover {
+
+/* Baaki sab gray */
+.one-by-one.has-active h1:not(.active) {
     color: #c5c5c5;
 }
+
 .service-video {
-    position: absolute;
+    position: fixed;
 
     left: 25px;
-    top: 50%;
-
-    transform: translateY(-50%);
+    top: 0;
 
     width: 370px;
     height: 300px;
@@ -560,31 +657,48 @@ p {
     overflow: hidden;
 
     opacity: 0;
+    visibility: hidden;
 
     z-index: 2;
 
     pointer-events: none;
 
-    transition: opacity 0.4s ease;
+    transition:
+        top 0.5s ease,
+        opacity 0.3s ease;
 }
+
 .service-video video {
     width: 100%;
     height: 100%;
 
     object-fit: cover;
 }
+
+
+/* ================= RIGHT TEXT ================= */
+
 .service-description {
-    position: absolute;
+    position: fixed;
 
+    top: 0;
     right: 250px;
-    top: 50%;
-
-    transform: translateY(-50%);
 
     width: 180px;
 
     z-index: 6;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        top 0.5s ease,
+        opacity 0.3s ease;
 }
+
+
 .service-description p {
     margin: 0;
 
@@ -597,12 +711,10 @@ p {
     line-height: 1.4;
 
     text-align: left;
-
-    opacity: 0;
-
-    transition: opacity 0.3s ease;
 }
 /* ------------------------------------------------- */
+
+
 #see-more {
     text-align: center;
     margin-top: 90px;

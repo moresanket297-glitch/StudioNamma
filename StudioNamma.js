@@ -25,6 +25,26 @@ function smoothScroll() {
 }
 smoothScroll();
 
+//--------------------------------------------------------------
+function updateTime() {
+
+    const now = new Date();
+
+    const time = now.toLocaleTimeString("en-GB", {
+        timeZone: "Europe/Madrid",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+    document.querySelector("#live-time").textContent = time;
+}
+
+updateTime();
+
+setInterval(updateTime, 1000);
+//-----------------------------------------------------------------
+
 
 // --- 1. DARK / LIGHT MODE LOGIC ---
 const body = document.body;
@@ -270,13 +290,15 @@ projects.forEach((project) => {
     animate();
 });
 
+// -----------------------------------------------------------------------
 
 // SERVICE
 const services = document.querySelectorAll(".one-by-one h1");
 
-const serviceVideo = document.querySelector("#serviceVideo");
 const serviceVideoBox = document.querySelector(".service-video");
+const serviceVideo = document.querySelector("#serviceVideo");
 
+const serviceDescription = document.querySelector(".service-description");
 const serviceText = document.querySelector("#serviceText");
 
 
@@ -284,45 +306,114 @@ services.forEach((service) => {
 
     service.addEventListener("mouseenter", () => {
 
-        // -----------------------------
-        // Remove active from all
-        // -----------------------------
-
         services.forEach((item) => {
             item.classList.remove("active");
         });
-
-
-        // -----------------------------
-        // Current service black
-        // -----------------------------
-
         service.classList.add("active");
 
+        document.querySelector(".one-by-one").classList.add("has-active");
 
-        // -----------------------------
-        // Get video
-        // -----------------------------
 
+        // 1. CURRENT HEADING POSITION
+        const rect = service.getBoundingClientRect();
+        const centerY = rect.top + rect.height / 2;
+
+        // 2. VIDEO POSITION
+        const videoHeight = 300;
+        serviceVideoBox.style.top = `${centerY - videoHeight / 2}px`;
+
+
+        // 3. TEXT POSITION
+        const textHeight = serviceDescription.offsetHeight;
+        serviceDescription.style.top = `${centerY - textHeight / 2}px`;
+
+        // 4. VIDEO CHANGE
         const videoURL = service.dataset.video;
 
         serviceVideo.src = videoURL;
-
-        serviceVideoBox.style.opacity = "1";
+        serviceVideo.currentTime = 0;
 
         serviceVideo.play().catch(() => {});
 
 
-        // -----------------------------
-        // Get right side text
-        // -----------------------------
+        // 5. TEXT CHANGE
+        serviceText.textContent = service.dataset.text;
 
-        const text = service.dataset.text;
+        // 6. SHOW
+        serviceVideoBox.style.opacity = "1";
+        serviceVideoBox.style.visibility = "visible";
 
-        serviceText.textContent = text;
+        serviceDescription.style.opacity = "1";
+        serviceDescription.style.visibility = "visible";
+    });
+});
 
-        serviceText.style.opacity = "1";
+// Mouse leave
+const servicesContainer = document.querySelector(".services-container");
 
+servicesContainer.addEventListener("mouseleave", () => {
+
+    services.forEach((item) => {
+        item.classList.remove("active");
     });
 
+    document.querySelector(".one-by-one").classList.remove("has-active");
+
+    serviceVideoBox.style.opacity = "0";
+    serviceVideoBox.style.visibility = "hidden";
+
+    serviceDescription.style.opacity = "0";
+    serviceDescription.style.visibility = "hidden";
+
+    serviceVideo.pause();
 });
+
+//------------------------------------------------------
+//cursor follow dot
+
+const cursorDot = document.querySelector(".cursor-dot");
+
+let mousseX = 0;
+let mousseY = 0;
+
+let dotX = 0;
+let dotY = 0;
+
+
+document.addEventListener("mousemove", (e) => {
+    mousseX = e.clientX + 40;
+    mousseY = e.clientY + 40;
+});
+
+function animateCursor() {
+
+    dotX += (mousseX - dotX) * 0.180;
+    dotY += (mousseY - dotY) * 0.180;
+
+    cursorDot.style.left = `${dotX}px`;
+    cursorDot.style.top = `${dotY}px`;
+
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+const hero = document.querySelector(".head");
+const cursoorDot = document.querySelector(".cursor-dot");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+
+        if (entries[0].isIntersecting) {
+            // Hero section visible hai → dot hide
+            cursoorDot.classList.remove("show");
+        } 
+        else {
+            // Hero section se bahar → dot show
+            cursoorDot.classList.add("show");
+        }
+    },
+    {
+        threshold: 0.1
+    }
+);
+observer.observe(hero);
