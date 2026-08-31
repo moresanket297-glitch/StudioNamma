@@ -24,8 +24,8 @@
 
     <span class="nav">
         <p>STUDIO NAMMA</p>
-        <p id="dark-toggle" style="cursor: pointer; user-select: none;">DARK MODE</p> 
-        <p id="menu_link" style="cursor: pointer; user-select: none;">MENU</p>
+        <p id="dark-toggle" user-select: none;">DARK MODE</p> 
+        <p id="menu_link" user-select: none;">MENU</p>
         <p>LET'S TALK!</p>
     </span>
 
@@ -63,28 +63,121 @@
 
 
     <p id="padding">SELECTED PROJECTS</p>
-    <div class="head3"><h1>PLAYGROUND</h1></div>
+
+    <div class="head3">
+        <h1>PLAYGROUND</h1>
+    </div>
+    <div class="blue-box1">
+        <h6>PORTFOLIO</h6>
+    </div>
+
 
     <div class="div-img1">
-        <img class="img" src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68bb0be00336912e360b324f_main%20case%20cover%20matera%20(1)-p-2000.webp" alt="">
-        <img class="img" src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68bae5b9f22246585fe911d0_chance-cover-desktop-p-2000.webp" alt="">
+
+        <div class="project">
+            <img class="img" src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68bb0be00336912e360b324f_main%20case%20cover%20matera%20(1)-p-2000.webp" alt="Matera">
+
+            <div id="one" class="project-label">MATERA</div>
+
+            <div class="project-preview">
+                <video src="https://studionamma.vercel.app/videos/matera/matera-highlight-2.mp4" muted loop playsinline></video>
+            </div>
+        </div>
+
+        <div class="project">
+            <img class="img" src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68bae5b9f22246585fe911d0_chance-cover-desktop-p-2000.webp" alt="Chance">
+
+            <div id="two" class="project-label">CHANCE</div>
+
+            <div class="project-preview">
+                <video src="https://studionamma.vercel.app/videos/chance/chance-cover.mp4" muted loop playsinline></video>
+            </div>
+        </div>
+
     </div>
-    
+
+
     <div class="div-img2">
-        <img class="img" src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68beb68ead192a24f9ad4372_silvr%20case%20cover%20(1)-p-2000.webp" alt="">
-        <img class="img" src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68bb1c497ad001257f2e727f_intramuros-cover-case-home%20(1)-p-2000.webp" alt="">
+
+        <div class="project">
+            <img class="img" src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68beb68ead192a24f9ad4372_silvr%20case%20cover%20(1)-p-2000.webp" alt="Silvr">
+
+            <div id="three" class="project-label">SILVR</div>
+
+            <div class="project-preview">
+                <video src="https://studionamma.vercel.app/videos/silvr/silvr-highlight.mp4" muted loop playsinline></video>
+            </div>
+        </div>
+
+        <div class="project">
+            <img class="img" src="https://cdn.prod.website-files.com/67aca0c732855fc2a1f2c4fc/68bb1c497ad001257f2e727f_intramuros-cover-case-home%20(1)-p-2000.webp" alt="Intramuros">
+
+            <div id="four" class="project-label">INTRAMUROS</div>
+
+            <div class="project-preview">
+                <video src="https://studionamma.vercel.app/videos/intramuros/intramuros-highlight.mp4" muted loop playsinline></video>
+            </div>
+        </div>
+
     </div>
+
 
     <p id="services">SERVICES</p>
 
-    <div class="one-by-one">
-        <h1>ART DIRECTION</h1>
-        <h1>BRANDING</h1>
-        <h1>WEBFLOW</h1>
-        <h1>UI/UX DESIGN</h1>
-        <h1>GSAP ANIMATIONS</h1>
-        <h1>ADVERTISING</h1>
-        <h1>SEO & CONTENT</h1>
+    <div class="services-container">
+
+        <!-- LEFT VIDEO -->
+        <div class="service-video">
+            <video id="serviceVideo" muted loop playsinline></video>
+        </div>
+
+
+        <!-- SERVICES -->
+        <div class="one-by-one">
+
+            <h1 data-video="https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68dfa2440a49684a10b9e055_FOOTER%20-%20BRANDINGV2-transcode.mp4"
+                data-text="STORYTELLING">
+                ART DIRECTION
+            </h1>
+
+            <h1 data-video="https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68dfa249c8ad1d2624abf3d5_Footer-Service-designV2-transcode.mp4"
+                data-text="IDENTITY">
+                BRANDING
+            </h1>
+
+            <h1 data-video="https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef7ea54539b4433a39276_Webflow-home-transcode.webm"
+                data-text="INTERACTIONS">
+                WEBFLOW
+            </h1>
+
+            <h1 data-video="https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef86a1717db6af24e06f2_UI-UX-Home-transcode.webm"
+                data-text="WIREFRAMES">
+                UI/UX DESIGN
+            </h1>
+
+            <h1 data-video="https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F69f31d237bb976aa6e0bc834_Scene-1_webm.webm"
+                data-text="TRANSITIONS">
+                GSAP ANIMATIONS
+            </h1>
+
+            <h1 data-video="https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68df9e1b94554da67438cec0_Ads-service-homeV3-transcode.mp4"
+                data-text="CREATIVE ADS">
+                ADVERTISING
+            </h1>
+
+            <h1 data-video="https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68befca9c05567e63bc4d4a0_seo%20content%20home-transcode.webm"
+                data-text="RANKING">
+                SEO & CONTENT
+            </h1>
+
+        </div>
+
+
+        <!-- RIGHT TEXT -->
+        <div class="service-description">
+            <p id="serviceText"></p>
+        </div>
+
     </div>
 
     <p id="see-more">SEE MORE →</p>

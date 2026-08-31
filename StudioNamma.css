@@ -96,13 +96,15 @@ body {
     align-items: center;
     
     padding: 10px 20px;
-    z-index: 1000; /* Page ke content ke upar rahe */
+    z-index: 1000; 
 }
 
 /* Individual <p> par fixed position hatayein */
-.nav p {
+.nav p, #dark-toggle, #menu_link {
+    cursor: url("https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985/68e3b2a062e7405c3602ab28_mickey-mouse-pointer-small.svg"), auto;
     margin: 0;
 }
+
 
 /* MAIN HEADING */
 h1 {
@@ -329,7 +331,155 @@ p {
 
     text-align: center;
 }
+.head3 h1 {
+    cursor: url("https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985/68e3b2a062e7405c3602ab28_mickey-mouse-pointer-small.svg"), auto;
+}
 
+.blue-box1 {
+    position: fixed;
+
+    width: 140px;
+    height: 54px;
+
+    background-color: blue;
+    color: #e6e2e2;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: rotate(-7deg);
+
+    transition: opacity 0.2s ease;
+}
+
+.blue-box1 h6 {
+    margin: 0;
+
+    font-family: "Mixtape Extra Condensed";
+
+    font-size: 35px;
+    letter-spacing: -1.5px;
+}
+
+/* --------------------------------------------- */
+.project {
+    position: relative;
+    width: 50%;
+}
+
+.project .img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    border-radius: 5px;
+}
+#one {
+    width: 110px;
+    height: 50px;
+}
+#two {
+    width: 110px;
+    height: 50px;
+}
+#three {
+    width: 80px;
+    height: 50px;
+    letter-spacing: -1px;
+}
+#four {
+    width: 160px;
+    height: 50px;
+}
+
+.project-label {
+    position: fixed;
+
+    background-color: blue;
+    color: #e6e2e2;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Mixtape Extra Condensed";
+    font-size: 30px;
+    letter-spacing: -1.5px;
+
+    pointer-events: none;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 9999;
+
+    transform: rotate(-7deg);
+
+    transition: opacity 0.2s ease;
+}
+
+.project {
+    position: relative;
+    width: 50%;
+}
+
+
+.project .img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    border-radius: 5px;
+
+    transition: filter 0.5s ease;
+}
+
+.project:hover .img {
+    filter: blur(3px) brightness(0.8);
+    /* transform: scale(0.99); */
+}
+
+.project-preview {
+    position: absolute;
+
+    width: 600px;
+    height: 330px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 9998;
+
+    transition: opacity 0.4s ease;
+}
+
+.project-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ------------------------------- */
 .div-img1 {
     padding: 10px;
     display: flex;
@@ -354,25 +504,105 @@ p {
     border-radius: 5px;
     width: 50%;
     height: 100vh;
+    cursor: url("https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985/68e3b2a062e7405c3602ab28_mickey-mouse-pointer-small.svg"), auto;
 }
-
 
 #services {
     padding-left: 10px;
     margin-bottom: 200px;
 }
+/* --------------------------------------------- */
 
+.services-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
 .one-by-one {
+    position: relative;
+    z-index: 5;
+
     text-align: center;
-    height: 100vh;
 
     font-size: 63px;
-    line-height: 20px;
+    line-height: 105px;
     letter-spacing: -5px;
-    /* word-spacing: 9px; */
+
     margin-top: -50px;
 }
+.one-by-one h1 {
+    color: #111;
+    margin: 0;
+    cursor: pointer;
 
+    transition: color 0.3s ease;
+}
+.one-by-one:has(h1:hover) h1 {
+    /* color: #c5c5c5; */
+    color: #111;
+}
+.one-by-one h1:hover {
+    color: #c5c5c5;
+}
+.service-video {
+    position: absolute;
+
+    left: 25px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 370px;
+    height: 300px;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    transition: opacity 0.4s ease;
+}
+.service-video video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+.service-description {
+    position: absolute;
+
+    right: 250px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 180px;
+
+    z-index: 6;
+}
+.service-description p {
+    margin: 0;
+
+    font-family: "GT Font";
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+
+    line-height: 1.4;
+
+    text-align: left;
+
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
+}
+/* ------------------------------------------------- */
 #see-more {
     text-align: center;
     margin-top: 90px;

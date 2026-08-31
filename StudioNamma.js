@@ -1,3 +1,31 @@
+let targetScroll = window.scrollY;
+let currentScroll = window.scrollY;
+
+window.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    // Mouse wheel ki movement
+    targetScroll += e.deltaY;
+
+    // Page ki limit
+    const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+    // Scroll ko page ke andar hi rakho
+    targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+
+}, { passive: false });
+
+
+function smoothScroll() {
+    // Current position slowly target ki taraf jayegi
+    currentScroll += (targetScroll - currentScroll) * 0.02;
+
+    window.scrollTo(0, currentScroll);
+
+    requestAnimationFrame(smoothScroll);
+}
+smoothScroll();
+
+
 // --- 1. DARK / LIGHT MODE LOGIC ---
 const body = document.body;
 const drk = document.querySelector("#dark-toggle");
@@ -72,8 +100,8 @@ if (headSection && videoBox) {
 
 function animate() {
     if (videoBox) {
-        currentX += (mouseX - currentX) * 0.05;
-        currentY += (mouseY - currentY) * 0.05;
+        currentX += (mouseX - currentX) * 0.08;
+        currentY += (mouseY - currentY) * 0.08;
 
         currentRotation += (targetRotation - currentRotation) * 0.1;
         targetRotation *= 0.9;
@@ -129,4 +157,172 @@ highlights.forEach((highlight) => {
         idx = 0;
         zIndex = images.length;
     });
+});
+
+// ----------------------------------------------------------
+const playground = document.querySelector(".head3 h1");
+const portfolio = document.querySelector(".blue-box1");
+
+let mouseeX = 0;
+let mouseeY = 0;
+
+let currenttX = 0;
+let currenttY = 0;
+
+playground.addEventListener("mouseenter", (e) => {
+    mouseeX = e.clientX + 20;
+    mouseeY = e.clientY - 50;
+
+    portfolio.style.opacity = "1";
+    portfolio.style.visibility = "visible";
+});
+
+playground.addEventListener("mousemove", (e) => {
+    mouseeX = e.clientX + 30;
+    mouseeY = e.clientY + 20;
+});
+
+playground.addEventListener("mouseleave", () => {
+    portfolio.style.opacity = "0";
+    portfolio.style.visibility = "hidden";
+});
+
+function animatePortfolio() {
+    // Smooth movement
+    currenttX += (mouseeX - currenttX) * 0.05;
+    currenttY += (mouseeY - currenttY) * 0.08;
+
+    portfolio.style.left = `${currenttX}px`;
+    portfolio.style.top = `${currenttY}px`;
+
+    requestAnimationFrame(animatePortfolio);
+}
+animatePortfolio();
+
+// ---------------------------------------------------
+
+const projects = document.querySelectorAll(".project");
+
+projects.forEach((project) => {
+
+    const label = project.querySelector(".project-label");
+    const preview = project.querySelector(".project-preview");
+    const video = preview.querySelector("video");
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let currentX = 0;
+    let currentY = 0;
+
+
+    // MOUSE ENTER
+    project.addEventListener("mouseenter", (e) => {
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Label show
+        label.style.opacity = "1";
+        label.style.visibility = "visible";
+
+        // Video show
+        preview.style.opacity = "1";
+        preview.style.visibility = "visible";
+
+        // Video play
+        video.play().catch(() => {});
+    });
+
+
+    // MOUSE MOVE
+    project.addEventListener("mousemove", (e) => {
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+    });
+
+    // MOUSE LEAVE
+    project.addEventListener("mouseleave", () => {
+
+        label.style.opacity = "0";
+        label.style.visibility = "hidden";
+
+        preview.style.opacity = "0";
+        preview.style.visibility = "hidden";
+
+        // Video stop
+        video.pause();
+        video.currentTime = 0;
+    });
+    // SMOOTH ANIMATION
+    function animate() {
+
+        currentX += (mouseX - currentX) * 0.08;
+        currentY += (mouseY - currentY) * 0.08;
+
+        label.style.left = `${currentX + 30}px`;
+        label.style.top = `${currentY + 20}px`;
+
+        requestAnimationFrame(animate);
+    }
+    animate();
+});
+
+
+// SERVICE
+const services = document.querySelectorAll(".one-by-one h1");
+
+const serviceVideo = document.querySelector("#serviceVideo");
+const serviceVideoBox = document.querySelector(".service-video");
+
+const serviceText = document.querySelector("#serviceText");
+
+
+services.forEach((service) => {
+
+    service.addEventListener("mouseenter", () => {
+
+        // -----------------------------
+        // Remove active from all
+        // -----------------------------
+
+        services.forEach((item) => {
+            item.classList.remove("active");
+        });
+
+
+        // -----------------------------
+        // Current service black
+        // -----------------------------
+
+        service.classList.add("active");
+
+
+        // -----------------------------
+        // Get video
+        // -----------------------------
+
+        const videoURL = service.dataset.video;
+
+        serviceVideo.src = videoURL;
+
+        serviceVideoBox.style.opacity = "1";
+
+        serviceVideo.play().catch(() => {});
+
+
+        // -----------------------------
+        // Get right side text
+        // -----------------------------
+
+        const text = service.dataset.text;
+
+        serviceText.textContent = text;
+
+        serviceText.style.opacity = "1";
+
+    });
+
 });
